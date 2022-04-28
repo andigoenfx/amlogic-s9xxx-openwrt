@@ -10,11 +10,11 @@
 sed -i 's/luci-theme-bootstrap/luci-theme-material/g' ./feeds/luci/collections/luci/Makefile
 
 # change ssid
-sed -i "s/OpenWrt/REYRE-STBx/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i "s/OpenWrt/GOEN-STBx/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i "s/iw /ipconfig /g" package/kernel/mac80211/files/lib/netifd/wireless/mac80211.sh
 
 # change hostname
-sed -i "s/OpenWrt/REYRE-STB/g" package/base-files/files/bin/config_generate
+sed -i "s/OpenWrt/GOEN-STB/g" package/base-files/files/bin/config_generate
 
 # ------------------------------- Main source ends -------------------------------
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/openwrt-passwall
@@ -59,16 +59,16 @@ svn co https://github.com/brvphoenix/wrtbwmon/trunk/wrtbwmon package/wrtbwmon
 # ------------------------------- Other started -------------------------------
 #
 # Add luci-app-passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/openwrt-passwall
-# rm -rf package/openwrt-passwall/{kcptun,xray-core} 2>/dev/null
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/openwrt-passwall
+rm -rf package/openwrt-passwall/{kcptun,xray-core} 2>/dev/null
 
 # Add luci-app-openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/openwrt-openclash
 pushd package/openwrt-openclash/tools/po2lmo && make && sudo make install 2>/dev/null && popd
 
 # Add luci-app-ssr-plus
-# svn co https://github.com/fw876/helloworld/trunk/{luci-app-ssr-plus,shadowsocksr-libev} package/openwrt-ssrplus
-# rm -rf package/openwrt-ssrplus/luci-app-ssr-plus/po/zh_Hans 2>/dev/null
+svn co https://github.com/fw876/helloworld/trunk/{luci-app-ssr-plus,shadowsocksr-libev} package/openwrt-ssrplus
+rm -rf package/openwrt-ssrplus/luci-app-ssr-plus/po/zh_Hans 2>/dev/null
 
 # Add luci-app-rclone
 # svn co https://github.com/ElonH/Rclone-OpenWrt/trunk package/openWrt-rclone
